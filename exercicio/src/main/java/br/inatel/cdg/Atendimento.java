@@ -9,12 +9,12 @@ public class Atendimento {
     private int sala;
 
 
-    public Atendimento (String professor, String horario, String periodo, int predio, int sala){
+    public Atendimento (String professor, String horario, String periodo, int sala, int predio){
         this.professor = professor;
         this.horario = horario;
         this.periodo = periodo;
-        this.predio = predio;
         this.sala = sala;
+        this.predio = predio;
     }
 
     public String getProfessor() {
@@ -40,19 +40,23 @@ public class Atendimento {
         this.periodo = periodo;
     }
 
-    public int getPredio() {
-        return predio;
-    }
-
-    public void setPredio(int predio) {
-        this.predio = predio;
-    }
-
     public int getSala() {
+
         return sala;
     }
 
     public void setSala(int sala) {
+
         this.sala = sala;
+    }
+
+    public int getPredio() {
+
+        return predio;
+    }
+
+    public void setPredio(int predio) {
+
+        this.predio = predio;
     }
 }

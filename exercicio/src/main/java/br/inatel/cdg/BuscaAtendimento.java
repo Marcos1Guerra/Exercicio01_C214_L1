@@ -8,6 +8,7 @@ public class BuscaAtendimento {
     AtendimentoService atendimentoService;
 
     public BuscaAtendimento(AtendimentoService service){
+
         this.atendimentoService = service;
     }
 
@@ -16,11 +17,15 @@ public class BuscaAtendimento {
 
         JsonObject jsonObject = JsonParser.parseString(atendimentoJson).getAsJsonObject();
 
-        return new Atendimento(jsonObject.get("professor").getAsString(),
+        int sala = jsonObject.get("sala").getAsInt();
+        int predio = escolhaDoPredio(sala);
+
+        return new Atendimento(
+                jsonObject.get("professor").getAsString(),
                 jsonObject.get("horario").getAsString(),
                 jsonObject.get("periodo").getAsString(),
                 jsonObject.get("sala").getAsInt(),
-                jsonObject.get("predio").getAsInt());
+                predio);
     }
 
     public boolean verificaArrayListExistente(int id){
@@ -33,4 +38,17 @@ public class BuscaAtendimento {
         }
     }
 
+    private int escolhaDoPredio(int sala) {
+        if (sala >= 1 && sala <= 5) {
+            return 1;
+        } else if (sala >= 6 && sala <= 10) {
+            return 2;
+        } else if (sala >= 11 && sala <= 15) {
+            return 3;
+        } else if (sala >= 16 && sala <= 20) {
+            return 4;
+        } else {
+            return 6; // Valor padrão ou indicar prédio não definido
+        }
+    }
 }
